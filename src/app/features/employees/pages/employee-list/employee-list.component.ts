@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -21,17 +17,21 @@ import { Employee } from '../../../../core/models/employee.model';
 export class EmployeeListComponent {
   private employeeService = inject(EmployeeService);
 
-employees = toSignal(
-  this.employeeService.employees$,
-  { initialValue: [] as Employee[] }
-);
-
+  employees = toSignal(this.employeeService.employees$, {
+    initialValue: [] as Employee[],
+  });
 
   trackById(index: number, emp: Employee): number {
     return emp.id;
   }
 
   deleteEmployee(id: number): void {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this employee?'
+    );
+
+    if (!confirmed) return;
+
     this.employeeService.remove(id);
   }
 }
