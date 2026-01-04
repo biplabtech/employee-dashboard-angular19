@@ -1,0 +1,27 @@
+.employee-form {
+  padding: 20px;
+  max-width: 400px;
+
+  div {
+    margin-bottom: 12px;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+  }
+
+  input {
+    width: 100%;
+    padding: 6px;
+  }
+
+  small {
+    color: red;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+}

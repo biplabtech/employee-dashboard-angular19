@@ -1,0 +1,44 @@
+<section class="employee-list">
+  <h2>Employee List</h2>
+
+  <a routerLink="/employees/new" class="add-btn">
+    ➕ Add Employee
+  </a>
+
+  <table *ngIf="employees().length > 0; else noData">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let emp of employees(); trackBy: trackById">
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.department }}</td>
+        <td>{{ emp.salary | currency }}</td>
+        <td>
+          <!-- EDIT -->
+          <a
+            [routerLink]="['/employees', emp.id, 'edit']"
+            class="action-link"
+          >
+            Edit
+          </a>
+
+          <!-- DELETE -->
+          <button (click)="deleteEmployee(emp.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p>No employees found.</p>
+  </ng-template>
+</section>

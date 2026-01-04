@@ -1,0 +1,40 @@
+<section class="employee-form">
+  <h2>Add Employee</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label>Name</label>
+      <input type="text" formControlName="name" />
+      <small *ngIf="form.controls.name.touched && form.controls.name.invalid">
+        Name is required
+      </small>
+    </div>
+
+    <div>
+      <label>Department</label>
+      <input type="text" formControlName="department" />
+      <small
+        *ngIf="form.controls.department.touched && form.controls.department.invalid"
+      >
+        Department is required
+      </small>
+    </div>
+
+    <div>
+      <label>Salary</label>
+      <input type="number" formControlName="salary" />
+      <small
+        *ngIf="form.controls.salary.touched && form.controls.salary.invalid"
+      >
+        Salary must be ≥ 0
+      </small>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="form.invalid">
+        Save
+      </button>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</section>
